@@ -30,6 +30,7 @@ def do_pack():
         return None
     return upfile
 
+
 def do_deploy(archive_path):
     """Deploys static archive to web servers."""
     if not archive_path:
