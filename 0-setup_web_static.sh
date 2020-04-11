@@ -9,5 +9,15 @@ echo -e "<html>\n\t<head>\n\t</head>\n\t<body>\n\t\tHolberton School\n\t</body>\
 ln -sf /data/web_static/releases/test/ /data/web_static/current
 chown -R ubuntu:ubuntu /data/
 config_file=/etc/nginx/sites-available/default
-sed -i '29a \ \tlocation /hbnb_static/ {\n\t\talias /data/web_static/current/;\n\t}\n' $config_file
+tee /etc/nginx/sites-available/default > /dev/null <<EOF
+server {
+listen 80 default_server;
+listen [::]:80 default_server;
+server_name localhost;
+
+location /hbnb_static {
+alias /data/web_static/current/;
+}
+}
+EOF
 service nginx restart

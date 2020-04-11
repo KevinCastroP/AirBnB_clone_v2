@@ -42,7 +42,7 @@ def do_deploy(archive_path):
         run("rm -rf /data/web_static/releases/{}/".format(Name))
         run("mkdir -p /data/web_static/releases/{}/".format(Name))
         run("tar -xzf /tmp/{} -C /data/web_static/releases/{}/".
-            format(archive_name, Name))
+            format(Path, Name))
         run("rm /tmp/{}".format(Path))
         run("mv /data/web_static/releases/{}/web_static/* "
             "/data/web_static/releases/{}/".format(Name, Name))
