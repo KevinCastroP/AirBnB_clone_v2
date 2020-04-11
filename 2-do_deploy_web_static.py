@@ -37,12 +37,12 @@ def do_deploy(archive_path):
     Path = archive_path.split("/")[-1]
     Name = Path.split(".")[0]
 
-    put(archive_path, "/tmp/{}".format(Path), use_sudo=True)
+    put(archive_path, "/tmp/{}", use_sudo=True)
     try:
         run("rm -rf /data/web_static/releases/{}/".format(Name))
         run("mkdir -p /data/web_static/releases/{}/".format(Name))
         run("tar -xzf /tmp/{} -C /data/web_static/releases/{}/".
-            format(Path, Name))
+            format(archive_name, Name))
         run("rm /tmp/{}".format(Path))
         run("mv /data/web_static/releases/{}/web_static/* "
             "/data/web_static/releases/{}/".format(Name, Name))
