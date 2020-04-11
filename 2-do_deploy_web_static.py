@@ -5,12 +5,13 @@ from the contents of the web_static folder
 """
 
 
-from fabric.api import *
 from datetime import datetime
+from fabric.api import local, settings, env
+from fabric.operations import put, run
 import os.path
 
 
-env.host = ['35.185.100.242', '54.90.130.112']
+env.hosts = ['35.185.100.242', '54.90.130.112']
 
 
 def do_pack():
