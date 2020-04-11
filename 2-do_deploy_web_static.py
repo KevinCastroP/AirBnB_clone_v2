@@ -37,7 +37,7 @@ def do_deploy(archive_path):
     Path = archive_path.split("/")[-1]
     Name = Path.split(".")[0]
 
-    put(archive_path, "/tmp/{}", use_sudo=True)
+    put(archive_path, "/tmp/", use_sudo=True)
     try:
         run("rm -rf /data/web_static/releases/{}/".format(Name))
         run("mkdir -p /data/web_static/releases/{}/".format(Name))
