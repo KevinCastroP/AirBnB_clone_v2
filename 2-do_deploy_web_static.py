@@ -31,34 +31,23 @@ def do_pack():
 
 def do_deploy(archive_path):
     """Deploys static archive to web servers."""
-    if os.path.isfile(archive_path) is False:
+    if not archive_path:
         return False
     Path = archive_path.split("/")[-1]
     Name = Path.split(".")[0]
 
-    if put(archive_path, "/tmp/{}".format(Path)).failed is True:
-        return False
-    if run("rm -rf /data/web_static/releases/{}/".
-           format(Name)).failed is True:
-        return False
-    if run("mkdir -p /data/web_static/releases/{}/".
-           format(Name)).failed is True:
-        return False
-    if run("tar -xzf /tmp/{} -C /data/web_static/releases/{}/".
-           format(Path, Name)).failed is True:
-        return False
-    if run("rm /tmp/{}".format(Path)).failed is True:
-        return False
-    if run("mv /data/web_static/releases/{}/web_static/* "
-           "/data/web_static/releases/{}/".format(Name, Name)).failed is True:
-        return False
-    if run("rm -rf /data/web_static/releases/{}/web_static".
-           format(Name)).failed is True:
-        return False
-    if run("rm -rf /data/web_static/current").failed is True:
-        return False
-    if run("ln -s /data/web_static/releases/{}/ /data/web_static/current".
-           format(Name)).failed is True:
-        return False
+    put(archive_path, "/tmp/{}".format(Path), use_sudo=True)
+    run("rm -rf /data/web_static/releases/{}/".format(Name))
+    run("mkdir -p /data/web_static/releases/{}/".format(Name))
+    run("tar -xzf /tmp/{} -C /data/web_static/releases/{}/".
+        format(Path, Name))
+    run("rm /tmp/{}".format(Path))
+    run("mv /data/web_static/releases/{}/web_static/* "
+           "/data/web_static/releases/{}/".format(Name, Name))
+    run("rm -rf /data/web_static/releases/{}/web_static".
+           format(Name))
+    run("rm -rf /data/web_static/current")
+    run("ln -s /data/web_static/releases/{}/ /data/web_static/current".
+           format(Name))
     print("\nNew Version Successfuly Deployed!\n")
     return True
