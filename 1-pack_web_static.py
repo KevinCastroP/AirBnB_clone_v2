@@ -13,7 +13,7 @@ import os.path
 def do_pack():
     """Creating a .tgz file to upload a folder to the servers"""
     DateTime = datetime.utcnow()
-    upfile = "versions/web_static_{}{}{}{}{}{}.tgz".format(DateTime.year,
+    upfile = "versions/web_static_{:4}{:02}{:02}{:02}{:02}{:02}.tgz".format(DateTime.year,
                                                            DateTime.month,
                                                            DateTime.day,
                                                            DateTime.hour,
