@@ -37,17 +37,20 @@ def do_deploy(archive_path):
     Name = Path.split(".")[0]
 
     put(archive_path, "/tmp/{}".format(Path), use_sudo=True)
-    run("rm -rf /data/web_static/releases/{}/".format(Name))
-    run("mkdir -p /data/web_static/releases/{}/".format(Name))
-    run("tar -xzf /tmp/{} -C /data/web_static/releases/{}/".
-        format(Path, Name))
-    run("rm /tmp/{}".format(Path))
-    run("mv /data/web_static/releases/{}/web_static/* "
-           "/data/web_static/releases/{}/".format(Name, Name))
-    run("rm -rf /data/web_static/releases/{}/web_static".
-           format(Name))
-    run("rm -rf /data/web_static/current")
-    run("ln -s /data/web_static/releases/{}/ /data/web_static/current".
-           format(Name))
-    print("\nNew Version Successfuly Deployed!\n")
-    return True
+    try:
+        run("rm -rf /data/web_static/releases/{}/".format(Name))
+        run("mkdir -p /data/web_static/releases/{}/".format(Name))
+        run("tar -xzf /tmp/{} -C /data/web_static/releases/{}/".
+            format(Path, Name))
+        run("rm /tmp/{}".format(Path))
+        run("mv /data/web_static/releases/{}/web_static/* "
+            "/data/web_static/releases/{}/".format(Name, Name))
+        run("rm -rf /data/web_static/releases/{}/web_static".
+            format(Name))
+        run("rm -rf /data/web_static/current")
+        run("ln -s /data/web_static/releases/{}/ /data/web_static/current".
+            format(Name))
+    except SystemExit:
+        return False
+    finally:
+        return True
