@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """
-Starting a flask web application
+Starting a flassk web application
 """
 
 
