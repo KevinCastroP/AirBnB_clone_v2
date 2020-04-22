@@ -34,7 +34,7 @@ def third_tab(text):
     return 'Python {}'.format(text.replace('_', ' '))
 
 
-@app.route('/number/<int: n>', strict_slashes=False)
+@app.route('/number/<int:n>', strict_slashes=False)
 def four_tab(n):
     """Four tab"""
     if type(n) is int:
