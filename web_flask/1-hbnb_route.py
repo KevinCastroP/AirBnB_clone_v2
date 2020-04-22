@@ -14,6 +14,7 @@ def hello_world():
     """Printing a message"""
     return 'Hello HBNB!'
 
+
 @app.route('/hbnb', strict_slashes=False)
 def first_tab():
     """First tab"""
