@@ -45,7 +45,7 @@ def four_tab(n):
 def five_tab(n):
     """Five tab"""
     if type(n) is int:
-        return render_template('5-number.html', n)
+        return render_template('5-number.html', n=n)
 
 
 if __name__ == '__main__':
