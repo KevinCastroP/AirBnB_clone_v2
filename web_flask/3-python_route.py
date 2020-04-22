@@ -27,7 +27,7 @@ def second_tab(text):
     return 'C {}'.format(text.replace('_', ' '))
 
 
-@app.route('/python', defaults={'text': "is cool"})
+@app.route('/python', defaults={'text': 'is_cool'})
 @app.route('/python/<text>', strict_slashes=False)
 def third_tab(text):
     """Third tab"""
