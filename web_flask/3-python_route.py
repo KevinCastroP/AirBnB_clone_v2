@@ -28,7 +28,7 @@ def second_tab(text):
 
 
 @app.route('/python', defaults={'text': "is cool"})
-@app.route('/python/<text>', stric_slashes=False)
+@app.route('/python/<text>', strict_slashes=False)
 def third_tab(text):
     """Third tab"""
     return 'Python {}'.format(text.replace('_', ' '))
