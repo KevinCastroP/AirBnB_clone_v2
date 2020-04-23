@@ -28,7 +28,7 @@ def do_pack():
         if res2.return_code == 0:
             return pathname
 
-env.hosts = ['35.231.236.18', '3.95.205.51']
+env.hosts = ['35.185.100.242', '54.90.130.112']
 
 
 def do_deploy(archive_path):
