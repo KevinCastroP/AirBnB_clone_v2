@@ -7,6 +7,7 @@ Showing a cities list by states from db
 from flask import Flask, render_template
 from models import storage
 from models.state import State
+from models.amenity import Amenity
 from operator import getitem
 
 app = Flask(__name__)
